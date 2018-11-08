@@ -60,3 +60,7 @@ Let's note the following points about this app:
 Try the following URLs and see if you can trace the code flow:
 * `http://localhost:3000/users`
 * `http://localhost:3000/abcd`
+
+Note the frequent use of `app.use()` in the code. Study the documentation of [app.use()](https://expressjs.com/en/4x/api.html#app.use). This is used to add middleware functions in the data flow path. In fact, it's been said, "An Express application is essentially a series of middleware function calls".
+
+Middleware functions have access to request and response objects. It the request-response cycle is not terminated within a middleware function, it must call `next()` so that the next middleware function is called. You can see an example of this in file `app.js`. To know more, read [Using Middleware](http://expressjs.com/en/guide/using-middleware.html).
