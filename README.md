@@ -1,6 +1,6 @@
 # 0. Overview
 
-This is a sample project for beginners who wish to learn Express.js. We will build a blogging web app. To learn the concepts step by step, we suggest you clone this code repository and checkout relevant checkpoints identified by branch names.
+This is a sample project for beginners who wish to learn Express.js. We will build a web app for blogging. To learn the concepts step by step, we suggest you clone this code repository and checkout relevant checkpoints identified by branch names.
 
 To start learning, you will need to install some essential tools. Versions mentioned below were used on Windows 10 when preparing this project but you may use more recent versions. Install the following:
 * [Git](https://git-scm.com/download) (2.19.1): Used to clone repo and checkout code of a specific branch.
@@ -16,12 +16,6 @@ npm -v
 code -v
 ```
 
-To get a high-level overview of Node.js, read [Node.js](https://devopedia.org/node-js) and [Express.js](https://devopedia.org/express-js) articles on Devopedia.
-
-To install Express, run the following commands:
-```
-git checkout master
-npm install
-```
+To get a high-level overview, read [Node.js](https://devopedia.org/node-js) and [Express.js](https://devopedia.org/express-js) articles on Devopedia. Although optional, you can also study Devopedia's [basic tutorial on Node.js](https://github.com/DevopediaOrg/nodejs-basic).
 
 The rest of this document guides you through the project step by step. To try out code at a particular step, checkout the relevant branch. For example, to checkout code of `br0.1` branch, run command `git checkout br0.1`. Branch names are mentioned in section headers.
