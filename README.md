@@ -19,3 +19,12 @@ code -v
 To get a high-level overview, read [Node.js](https://devopedia.org/node-js) and [Express.js](https://devopedia.org/express-js) articles on Devopedia. Although optional, you can also study Devopedia's [basic tutorial on Node.js](https://github.com/DevopediaOrg/nodejs-basic).
 
 The rest of this document guides you through the project step by step. To try out code at a particular step, checkout the relevant branch. For example, to checkout code of `br0.1` branch, run command `git checkout br0.1`. Branch names are mentioned in section headers.
+
+
+# 1. Hello World Express App (br0.1)
+
+Let's create a simple app with Express.js. We'll install `express` node module by typing `npm install express`.
+
+Study the code in `app.js`. The request and response objects of Express are built on top of those of Node. Start the Express app by running `node app.js`. Go to your browser and access URL `http://localhost:3000/`
+
+Congrats! You've just built your "Hello World" Express app!
