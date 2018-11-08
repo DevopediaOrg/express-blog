@@ -60,3 +60,24 @@ Let's note the following points about this app:
 Try the following URLs and see if you can trace the code flow:
 * `http://localhost:3000/users`
 * `http://localhost:3000/abcd`
+
+
+# 3. MongoDB & User Authentication (br0.3)
+
+We need a database for storing app data. We'll use MongoDB. Install the following:
+* [MongoDB Community Server](https://www.mongodb.com/download-center/community) (4.0.4): We'll use MongoDB as the database.
+* [MongoDB Compass](https://www.mongodb.com/download-center/compass) (1.15.4): This is optional. It provides a GUI for MongoDB. Install the Community Edition.
+* For _Object Document Model (ODM)_, we'll use `mongoose` module. This is dependent on `mongodb` and `mongodb-core`. The latter are MongoDB drivers for Node.
+
+Our app will allow users to login and logout. Users need to be authenticated when they login. We'll store user data in the database. Since passwords need to be encrypted before storing them, we'll use `bcrypt` module for this purpose.
+
+To manage user sessions, we'll use `express-session`. To store user sessions in MongoDB, we'll use `connect-mongo`. All new modules required in this section can be installed by going to `app/` folder and running `npm install`.
+
+Do the following and later study the code:
+* Visit `http://localhost:3000/` and `http://localhost:3000/users`. Explain why the styling is so different.
+* Visit `http://localhost:3000/login`. Register a new user. When logged in, visit `http://localhost:3000/login`.
+* Visit `http://localhost:3000/login/logout` to logout. Visit `http://localhost:3000/login/profile` after logging out.
+
+Code used in this section was adapted from [DDCSLearning/authenticationIntro](https://github.com/DDCSLearning/authenticationIntro). To learn more, read [Sessions in Express.js](http://expressjs-book.com/index.html%3Fp=128.html).
+
+By now you should know when to use these response methods: `send()`, `sendFile()`, `render()`, `redirect()`. For more information, study the [Express documentation for Response](https://expressjs.com/en/4x/api.html#res).
