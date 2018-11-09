@@ -98,7 +98,7 @@ app.use(function(req, res, next) {
 ```
 * In `app/routes/user.js`, import `User` model (`var user = require('../models/user');`) and update user listing code:
 ```
-  user.find({}, function (err, docs) {
-    res.send(JSON.stringify(docs));
-  });
+user.find({}, function (err, docs) {
+  res.send(JSON.stringify(docs));
+});
 ```
