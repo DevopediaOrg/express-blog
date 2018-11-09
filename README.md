@@ -87,3 +87,18 @@ Do the following and later study the code:
 Code used in this section was adapted from [DDCSLearning/authenticationIntro](https://github.com/DDCSLearning/authenticationIntro). To learn more, read [Sessions in Express.js](http://expressjs-book.com/index.html%3Fp=128.html).
 
 By now you should know when to use these response methods: `send()`, `sendFile()`, `render()`, `redirect()`. For more information, study the [Express documentation for Response](https://expressjs.com/en/4x/api.html#res).
+
+As an exercise, try out the following:
+* In `app.js`, add the following code before logging done by `morgan`:
+```
+app.use(function(req, res, next) {
+  console.log('Time:', Date().toLocaleString());
+  next();
+});
+```
+* In `app/routes/user.js`, import `User` model (`var user = require('../models/user');`) and update user listing code:
+```
+  user.find({}, function (err, docs) {
+    res.send(JSON.stringify(docs));
+  });
+```
