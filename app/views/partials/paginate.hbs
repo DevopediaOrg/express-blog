@@ -1,0 +1,7 @@
+{{load bootstrap_pagination}}
+
+{{#if is_paginated}}
+    <div style="text-align:right">
+    {{bootstrap_paginate page_obj range=7 show_first_last="true"}}
+    </div>
+{{/if}}

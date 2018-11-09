@@ -1,0 +1,136 @@
+/* ====================================================================
+   Top menu 
+---------------------------------------------------------------------*/
+#topmenu > li > a:hover,
+#topmenu > li > a:focus {
+    color: #777;
+}
+
+#topmenu {
+    border-radius: 0px;
+    border-color: #f8f8f8;
+    border: 0px;
+    min-height: 0px;
+    margin-bottom: 0px;
+    float: right;
+    background-image: none !important;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+}
+
+.show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+.social .fa-facebook:hover {
+    color: #4060A5;
+}
+
+.social .fa-twitter:hover {
+    color: #00ABE3;
+}
+
+.social .fa-google-plus:hover {
+    color: #e64522;
+}
+
+.social .fa-linkedin:hover {
+    color: #0094BC;
+}
+
+.social .fa-rss:hover {
+    color: #FF8300;
+}
+
+.login {
+    border-left: 0px solid #777;
+    padding-left: 0px;
+}
+
+.login .fa-sign-in:hover {
+    color: #4CC417;
+}
+
+.login .fa-sign-out:hover {
+    color: #DC381F;
+}
+
+
+/* ====================================================================
+   Main menu 
+---------------------------------------------------------------------*/
+#mainmenu {
+    border-radius: 0px;
+    border-color: #f8f8f8;
+    border: 0px;
+    color: #FFF;
+}
+
+/* 00ccff 1b6c97 091441 */
+#mainmenu .container-fluid {
+    background-color: #091441;
+}
+
+.mainmenu > .open > a,
+.mainmenu > .active > a, 
+.mainmenu > .active > a:focus, 
+.mainmenu > .active > a:hover {
+    background-image: none !important;
+    background-color: #00ccff !important;
+    color: #091441 !important;
+}
+
+.mainmenu > li > a {
+    color: #FFF !important;
+    font-family: 'Share Tech';
+    font-size: 18px;
+}
+
+.mainmenu > li > a:focus, 
+.mainmenu > li > a:hover {
+    color: #00ccff !important;
+    font-family: 'Share Tech';
+    font-size: 18px;
+}
+
+.dropdown-menu {
+    padding: 0px;
+    margin: 0px;
+    margin-left: -1px;
+}
+
+.dropdown-menu > li > a {
+    background-color: #091441 !important;
+    color: #FFF !important;
+    font-family: 'Share Tech';
+    font-size: 14px;
+}
+
+.dropdown-menu > .active > a {
+    background-image: none !important;
+    background-color: #00ccff !important;
+    color: #091441 !important;
+}
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
+    background-image: none !important;
+    background-color: #091441 !important;
+    color: #00ccff !important;
+}
+
+.navbar-default .navbar-toggle:hover  {
+}
+ 
+.navbar-default .navbar-toggle:focus {
+}
+
+
+/* ====================================================================
+   Breadcrumbs 
+---------------------------------------------------------------------*/
+.breadcrumb {
+    font-size: 0.7em;
+    padding: 0px 0px 0px 20px;
+    border-radius: 0px;
+}

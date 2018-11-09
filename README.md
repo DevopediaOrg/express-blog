@@ -102,3 +102,36 @@ user.find({}, function (err, docs) {
   res.send(JSON.stringify(docs));
 });
 ```
+
+
+# 4. Design the Blog (br0.4)
+
+It's time to build our blog app. We want the following features:
+* Display list of published articles from most recent to the oldest
+* Display list of authors
+* An author can login and add/edit/delete/publish own articles
+* Each article has a teaser image
+* Each article can belong to one or more topics
+* Visitors can clap for an article
+* Each topic will have an image and a description
+* Display published articles by author
+* Display published articles by topic
+* Each author has a profile page, including an avatar picture
+* Visitors can comment on an article
+
+In addition to our User model, our app will require the following models: Article, Topic. These are available in `models/` folder. Module `mongoose-timestamp` will automatically add `createdAt` and `updatedAt` fields to a schema. Why is that we use this for Topic but not for Article?
+
+Our app will require the following views and associated routes:
+* Home: combines parts of other views, login and logout
+* Article:
+    * listing: default, by author (published or unpublished), by tag
+    * view
+    * edit
+* Author Profile:
+    * view
+    * edit
+    * articles: implemented as part of article listing
+* 404: to handle missing pages
+
+`express-handlebars`
+We've implemented some of these. Try navigating through the app. 

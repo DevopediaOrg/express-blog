@@ -1,0 +1,284 @@
+@import url("date.css");
+
+body {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+@media (max-width:560px) {
+    .site-title-header {
+        margin-top: -110px;
+        padding-left: 25px;
+    }
+    .site-title-header a {
+        font-size: 18pt !important;
+    }
+}
+
+@media (min-width:560px) and (max-width:768px) {
+    .site-title-header {
+        margin-top: -160px;
+        padding-left: 25px;
+    }
+    .site-title-header a {
+        font-size: 24pt !important;
+    }
+}
+
+@media (min-width:768px) and (max-width:820px) {
+    .site-title-header {
+        margin-top: -200px;
+        padding-left: 25px;
+    }
+    .site-title-header a {
+        font-size: 36pt !important;
+    }
+}
+
+@media (min-width:820px) and (max-width:960px) {
+    .site-title-header {
+        margin-top: -240px;
+        padding-left: 25px;
+    }
+    .site-title-header a {
+        font-size: 40pt !important;
+    }
+}
+
+@media (min-width:960px) {
+    .site-title-header {
+        margin-top: -300px;
+        padding-left: 25px;
+    }
+    .site-title-header a {
+        font-size: 50pt !important;
+    }
+}
+
+.page-header {
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #FFF;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.footer {
+    font-size: 0.9em;
+    color: #777;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 5px;
+    margin-top: 40px;
+}
+
+.content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.maincontent {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Share Tech';
+}
+
+h1.page-title {
+    border-bottom: 1px solid #DDD;
+}
+
+h2.subtitle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+img.topic-img {
+    width: 100%;
+    margin-bottom: 40px;    
+}
+
+.today-date {
+    color: #777;
+    font-size: 12px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.today-date span.label {
+    margin-left: 10px;
+    padding-top: 3px;
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.post {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 70px;
+}
+
+.post h1 a, .post h1 a:visited {
+    color: #000000;
+}
+
+.post p br {
+    margin-bottom: 20px;
+}
+
+.post .header {
+    font-family: 'Share Tech';
+    font-size: 1.25em;
+    text-align: center;    
+}
+
+.post .main-img {
+    margin: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+    border: 0px solid #f5f5f5;
+}
+
+.post .main-img img {
+    max-width: 100%;
+}
+
+.post .thumbnail {
+    border: 0px solid #f5f5f5;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    min-height: 100px;
+}
+
+.post .thumbnail img {
+    margin-top: -5px;
+    margin-left: 10px;
+    padding-top: 15px;
+    max-width: 100%;
+    max-height: 200px !important;
+    margin-right: 20px;
+}
+
+.home-thumbnail {
+    height: 300px;
+    text-align: center;
+}
+
+.home-thumb-title {
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.home-thumb-title > a:hover,
+.home-thumb-title > a:focus {
+    text-decoration: none !important;
+}
+
+.img-wrapper {
+    height: 100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.post .main-text {
+    margin-bottom: 40px;
+}
+
+.firstWord {
+    font-family: 'Share Tech';
+    font-size:1.6em;
+    text-transform: uppercase;
+}
+
+.author-post-states {
+    margin-top: 20px;
+}
+
+.author-name {
+    font-family: 'Share Tech';
+    font-size:1.2em;
+    text-transform: uppercase;
+}
+
+.author-dashboard-img img {
+    max-width: 100%;
+}
+
+.author-dashboard-text {
+    padding-top: 20px;
+}
+
+.state-icons {
+    text-align: center;
+}
+
+.state-icons a span.counts {
+    font-size: 0.8em;
+}
+
+.Draft a {
+    color: #FF8006 !important;
+}
+
+.Published a {
+    color: #056B10 !important;
+}
+
+.Unpublished a {
+    color: #777 !important;
+}
+
+.Draft > a:hover,
+.Draft > a:focus,
+.Published > a:hover,
+.Published > a:focus,
+.Unpublished > a:hover,
+.Unpublished > a:focus {
+    text-decoration: none !important;
+}
+
+.err-404 {
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: red;
+    font-size: 200px;
+    font-family: 'Share Tech';
+}
+
+.msg-404 {
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 30px;
+    font-family: 'Share Tech';    
+}
+
+.up-arrow {
+    float: right;
+}
+
+ul.tag-cloud li {
+    float: left;
+    margin-left: 0px;
+    margin-right: 5px;
+    padding: 0px;
+    list-style-type: none;
+    line-height: 1.5em;
+}

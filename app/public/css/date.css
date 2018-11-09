@@ -1,0 +1,143 @@
+.date {
+    float: left;
+    position: relative;
+    width: 50px;
+}
+.date-Draft {
+    background: #FF8006;
+}
+.date-Published {
+    background: #056B10;
+}
+.date-Unpublished {
+    background: #777;
+}
+.date p {
+    color: #f6f6f6;
+    font: 18px/30px Georgia, sans-serif;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 -1px 1px hsla(0,0%,0%,.1);
+}
+.date p:after {
+    content: '';
+    height: 25px;
+    left: -20px;
+    position: absolute;
+    top: -25px;
+    width: 90px;
+    /* box-shadow: 0 10px 10px -10px hsla(0,0%,0%,.5);*/
+}
+.date .day {
+    display: block;
+    font-size: 28px;
+    padding-top: 6px;
+}
+
+.date .year {
+    display: block;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+/* Traditional Ribbon */
+.traditional:after, .traditional:before {
+    bottom: -15px;
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 0;
+}
+.traditional-Draft:after, .traditional-Draft:before {
+    border-top: 15px solid #FF8006; 
+}
+.traditional-Published:after, .traditional-Published:before {
+    border-top: 15px solid #056B10; 
+}
+.traditional-Unpublished:after, .traditional-Unpublished:before {
+    border-top: 15px solid #777; 
+}
+.traditional:after {
+    border-right: 25px solid transparent;  
+    left: 0;  
+}
+.traditional:before {
+    border-left: 25px solid transparent;  
+    right: 0;  
+}
+
+/* Cut-off Ribbon */
+.cut-off:after {
+    background-repeat: repeat-x;
+    background-position: 50% 0;
+    background-size: 10px 10px;
+    bottom: -5px;
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute; /* Make sure the parent element has a position set */
+    right: 0;
+}
+.cut-off-Draft:after {
+    background-image: -webkit-linear-gradient(45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006), 
+                      -webkit-linear-gradient(-45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006);
+    background-image:    -moz-linear-gradient(45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006),
+                         -moz-linear-gradient(-45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006);
+    background-image:     -ms-linear-gradient(45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006),
+                          -ms-linear-gradient(-45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006);
+    background-image:      -o-linear-gradient(45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006),
+                           -o-linear-gradient(-45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006);
+    background-image:         linear-gradient(45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006),
+                              linear-gradient(-45deg, #FF8006 25%, transparent 25%, transparent 75%, #FF8006 75%, #FF8006);
+}
+.cut-off-Published:after {
+    background-image: -webkit-linear-gradient(45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10), 
+                      -webkit-linear-gradient(-45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10);
+    background-image:    -moz-linear-gradient(45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10),
+                         -moz-linear-gradient(-45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10);
+    background-image:     -ms-linear-gradient(45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10),
+                          -ms-linear-gradient(-45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10);
+    background-image:      -o-linear-gradient(45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10),
+                           -o-linear-gradient(-45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10);
+    background-image:         linear-gradient(45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10),
+                              linear-gradient(-45deg, #056B10 25%, transparent 25%, transparent 75%, #056B10 75%, #056B10);
+}
+.cut-off-Unpublished:after {
+    background-image: -webkit-linear-gradient(45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777), 
+                      -webkit-linear-gradient(-45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777);
+    background-image:    -moz-linear-gradient(45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777),
+                         -moz-linear-gradient(-45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777);
+    background-image:     -ms-linear-gradient(45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777),
+                          -ms-linear-gradient(-45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777);
+    background-image:      -o-linear-gradient(45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777),
+                           -o-linear-gradient(-45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777);
+    background-image:         linear-gradient(45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777),
+                              linear-gradient(-45deg, #777 25%, transparent 25%, transparent 75%, #777 75%, #777);
+}
+
+/* Rounded Ribbon */
+.rounded:before {
+    background-position: 0% 100%;
+    background-repeat: repeat;
+    background-size: 10px 10px;
+    bottom: -5px;
+    content: '';
+    height: 95px;
+    left: -5px;
+    position: absolute;
+    right: -5px;
+}
+.rounded-Draft:before {
+    background-image: -webkit-radial-gradient(#FF8006 50%, transparent 50%);
+}
+.rounded-Published:before {
+    background-image: -webkit-radial-gradient(#056B10 50%, transparent 50%);
+}
+.rounded-Unpublished:before {
+    background-image: -webkit-radial-gradient(#777 50%, transparent 50%);
+}
+.rotate90 {
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+}

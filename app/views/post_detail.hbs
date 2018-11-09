@@ -1,0 +1,71 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{load crispy_forms_tags}}
+
+{{block title}}{{ block.super }}: Post Detail{{endblock}}
+
+{{block content}}
+    <h1 class="page-title">{{ post.title }}</h1>
+
+    <div class="row">
+      <div class="col-sm-8 col-md-8">
+        <div class="post">
+            <div class="row header">
+                <div class="col-sm-3 col-md-3">
+                    {{> post_date}}
+                </div>
+                <div class="col-sm-9 col-md-9">
+                    <div class="col-sm-3 col-md-3">
+                        <span class="glyphicon glyphicon-equalizer"></span><br>
+                        {{ post.text | wordcount }} words
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <img style="max-height:19px" src="{{ MEDIA_URL }}/{{post.author.author.photo}}"><br>
+                        {{ post.author.first_name }} {{ post.author.last_name }}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        {{#if (test "user.is_authenticated and user.id == post.author.id")}}
+                        <a href="{{url "blog:post_edit" pk post.pk}}">
+                            <span class="glyphicon glyphicon-pencil"></span><br>
+                            Edit Post
+                        </a>
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        {{#if (test "user.is_authenticated and user.id == post.author.id")}}
+                        <a href="{{url "blog:post_delete" pk post.pk}}">
+                            <span class="glyphicon glyphicon-trash"></span><br>
+                            Delete Post
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            {{#if post.image}}
+            <div class="main-img">
+                <img src="{{ MEDIA_URL }}/{{post.image}}">           
+            </div>
+            {{/if}}
+            
+            <div id="firstWord" class="main-text">
+                {{ post.text | linebreaks }}
+            </div>
+
+            {{#if post.tags.all}}
+            <div>
+                <h4>Tags</h4>
+                {{#each tag in post.tags.all}}
+                <span class="label label-default">{{ tag }}</span>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+      </div>
+
+      {{> post_modules}}
+
+    </div>
+{{endblock}}

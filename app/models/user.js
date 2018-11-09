@@ -18,9 +18,9 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  passwordConf: {
-    type: String
-  }
+  passwordConf: String,
+  profile: String,
+  avatarImgPath: String
 });
 
 //authenticate input against database

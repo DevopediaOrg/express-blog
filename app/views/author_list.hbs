@@ -1,0 +1,45 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{block title}}{{ block.super }}: Authors{{endblock}}
+
+{{block content}}
+    <h1 class="page-title">Authors</h1>
+    
+    <div class="row">
+      <div class="col-sm-8 col-md-8">
+          {{#each authors as |author idx|}}
+              <div class="post">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4">
+                    <span class="author-name">{{author.user.first_name}} {{author.user.last_name}}</span>
+                    {{#if author.photo}}
+                    <div class="thumbnail">
+                        <img src="{{ MEDIA_URL }}/{{author.photo}}">           
+                    </div>
+                    {{/if}}
+                  </div>
+
+                  <div class="col-sm-8 col-md-8">
+                    <span class="label label-default">
+                        {{author.num_posts}} Published Posts
+                    </span>
+                    &nbsp;
+                    <span class="label label-default">
+                        Member since {{author.user.date_joined | date:"M Y"}}
+                    </span>
+                    <div style="margin-top:20px">
+                        {{ author.profile | linebreaks }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+           {{/each}}
+      </div>
+
+      {{> post_modules author_dashboard='show'}}
+
+    </div>
+
+{{endblock content}}

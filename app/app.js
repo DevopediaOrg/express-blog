@@ -12,6 +12,12 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+const exphbs  = require('express-handlebars');
+app.engine('hbs', exphbs({
+  extname: '.hbs',
+  defaultLayout: 'base',
+  helpers: require('./lib/hbs-helpers')
+}));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -25,7 +31,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/testForAuth');
+mongoose.connect('mongodb://localhost/expressBlog');
 var db = mongoose.connection;
 
 //handle mongo error

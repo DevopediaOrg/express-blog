@@ -1,0 +1,73 @@
+<div class="col-sm-4 col-md-4">
+
+  {{#if (test "user.is_authenticated and author_dashboard == 'show'")}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Author Dashboard</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 author-dashboard-img">
+            <img src="{{ MEDIA_URL }}/{{user.author.photo}}">
+        </div>
+        <div class="col-sm-6 col-md-6 author-dashboard-text">
+            <span class="label label-success">{{user.first_name}} {{user.last_name}}</span><br><br>
+            <a href="{{url "blog:post_new"}}">
+                <i class="fa fa-plus"> Add Post</i>
+            </a>            
+        </div>
+      </div>
+      <div class="row author-post-states">
+        {{#each s in author_post_states}}
+          <div class="col-sm-4 col-md-4 state-icons {{s.state}}">
+              <a href="{{url "blog:state_list" state=s.state}}">
+                  <i class="fa fa-2x fa-file-text"></i>
+                  <br><span class="counts">{{s.state}}<br>({{s.state__count}})</span>
+              </a>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">By Topic</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+          {{#each topics as |topic idx|}}
+              {{#if (test "topic == curr_topic")}}
+              <li>{{topic}} ({{num_posts}})</li>
+              {{else}}
+              <li><a href="{{urlslugify "blog:topic_list" topic}}">{{topic}} ({{num_posts}})</a></li>
+              {{/if}}
+          {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tag Cloud</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="tag-cloud">
+          {{#each tags as |tag idx|}}
+              {{#if (test "tag == curr_tag")}}
+              <li style="font-size:{{dist}}em">
+                  <span style="color:darkorange">{{tag}}</span>
+              </li>
+              {{else}}
+              <li style="font-size:{{dist}}em">
+                  <a href="{{urlslugify "blog:tag_list" tag}}">{{tag}}</a>
+              </li>
+              {{/if}}
+          {{/each}}
+      </ul>
+    </div>
+  </div>
+
+</div>        
+

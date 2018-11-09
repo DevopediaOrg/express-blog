@@ -1,0 +1,61 @@
+<nav id="mainmenu" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+    
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="nav navbar-nav mainmenu">
+                {{#if (test "request.path == '/'")}}
+                    <li class='active'><a href="/">Home</a></li>
+                {{else}}
+                    <li><a href="/">Home</a></li>
+                {{/if}}
+
+                {{#if (test "'topics' in request.path or 'tags' in request.path or 'post/' in request.path or 'states' in request.path")}}
+                <li class="dropdown show-on-hover active">
+                {{else}}
+                <li class="dropdown show-on-hover">
+                {{/if}}
+                    <a href="{{url "blog:all_topic_list"}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {{#each topics as |topic idx|}}
+                            {{#if (test "topic == curr_topic")}}
+                            <li class="active"><a href="{{urlslugify "blog:topic_list" topic}}">{{ topic }}</a></li>
+                            {{else}}
+                            <li><a href="{{urlslugify "blog:topic_list" topic}}">{{ topic }}</a></li>
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                </li>
+
+                {{url "blog:author_list" authors_url}}
+                {{#if (test "request.path == authors_url")}}
+                    <li class='active'><a href="{{authors_url}}">Authors</a></li>
+                {{else}}
+                    <li><a href="{{authors_url}}">Authors</a></li>
+                {{/if}}
+
+                {{url "blog:about" about_url}}
+                {{#if (test "request.path == about_url")}}
+                    <li class='active'><a href="{{about_url}}">About</a></li>
+                {{else}}
+                    <li><a href="{{about_url}}">About</a></li>
+                {{/if}}
+            </ul>
+            <ul class="nav navbar-nav navbar-right mainmenu">
+                <form class="navbar-form navbar-right" role="search" action="{{url "blog:search_results"}}">
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <input type="text" class="form-control" name="q" placeholder="Search ...">
+                    </div>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>

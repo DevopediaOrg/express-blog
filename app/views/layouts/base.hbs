@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The Tech Blog{{subtitle}}</title>
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/google-fonts.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/d3/nv.d3.css">
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+  <script src="/d3/d3.min.js"></script>
+  <script src="/d3/nv.d3.min.js"></script>
+  <script src="/js/common.js"></script>
+</head>
+
+<body>
+  <!-- Top menu -->
+  <span class='today-date'>
+    {{now "j-M-Y H:i"}} IST
+    {{#if user.is_authenticated}}
+    <span class="label label-success">{{user.username}}</span>
+    {{/if}}
+  </span>
+  {{> topmenu}}
+
+  <!-- Header image -->
+  <img src="/images/header.jpg" style="width:100%">
+  <div class="page-header">
+    <h1 class="site-title-header"><a href="/">The<br>Tech<br>Blog</a></h1>
+  </div>
+
+  <!-- Main menu -->
+  {{> mainmenu}}
+
+  <!-- Breadcrumbs -->
+  {{> breadcrumbs}}
+
+  <!-- Main content -->
+  <div class="content maincontent">
+    <div class="row">
+      {{{body}}}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2015-2018 The Tech Blog, Bangalore. All Rights Reserved.
+    <div class="up-arrow">
+      <a href="#"><span class="glyphicon glyphicon-menu-up"></span></a>
+    </div>
+  </div>
+</body>
+
+</html>

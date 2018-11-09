@@ -1,0 +1,19 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{block title}}{{ block.super }}: Delete Post{{endblock}}
+
+{{block content}}
+
+<div class="alert alert-danger" role="alert">
+    <h3><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Post Delete</h3>
+    <p><br>
+    <form action="" method="post">{{csrf_token}}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm" />
+    </form>
+    </p>
+</div>
+
+{{endblock content}}

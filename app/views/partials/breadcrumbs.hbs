@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+    <li><a href="/">HOME</a></li>
+    {{#each path_items as |item idx|}}
+        {{#if (test "item != ''")}}
+            {{#if forloop.last}}
+                <li class="active">{{upper item}}</li>
+            {{else}}
+                <li><a href="/{{slugify item}}">{{upper item}}</a></li>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+</ol>

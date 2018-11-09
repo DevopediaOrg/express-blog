@@ -1,0 +1,17 @@
+{{#if post.published_date}}
+<div class="date date-{{post.state}} cut-off cut-off-{{post.state}}">
+  <p>
+    <span class="day">{{ post.published_date | date:"d" }}</span>
+    <span class="month">{{ post.published_date | date:"M" }}</span>
+    <span class="year">{{ post.published_date | date:"Y" }}</span> 
+  </p>
+</div>
+{{else}}
+<div class="date date-{{post.state}} cut-off cut-off-{{post.state}}">
+  <p>
+    <span class="day">&nbsp;</span>
+    <span class="month">&nbsp;</span>
+    <span class="year rotate90">DRAFT</span>
+  </p>
+</div>
+{{/if}}

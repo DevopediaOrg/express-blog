@@ -1,0 +1,53 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{load crispy_forms_tags}}
+
+{{block title}}{{ block.super }}: Post Add/Edit{{endblock}}
+
+{{block content}}
+    {{#if post.pk}}
+    <h1 class="page-title">Edit Post</h1>
+    {{else}}
+    <h1 class="page-title">New Post</h1>
+    {{/if}}
+    
+    <div class="row">
+      <div class="col-sm-8 col-md-8">
+        <form method="POST" enctype="multipart/form-data" class="post-form">
+            {{csrf_token}}
+            {{ form | crispy }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+      </div>
+
+      <div class="col-sm-4 col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Instructions</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+                <li>Choose the most suitable topic for the post. Topics are listed below.</li>
+                <li>You may choose to save a draft and publish the post later.</li>
+                <li>If you make the post private, only you can view it.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Topics</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+                {{#each topic, desc, _ in topics}}
+                <li><b>{{topic}}</b><br>{{desc}}</li>
+                {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>        
+    </div>
+
+{{endblock}}

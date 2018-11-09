@@ -1,0 +1,61 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{block title}}{{ block.super }}: Search{{endblock}}
+
+{{block content}}
+<h1 class="page-title">Search Results</h1>
+
+<div class="row">
+  <div class="col-sm-8 col-md-8">
+      {{#each post in posts}}
+          <div class="post">
+            {{#if forloop.first}}
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                Search terms: {{search_query}}<br>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                Found {{paginator.count}} matches. Showing {{page_obj.start_index}}-{{page_obj.end_index}}.
+            </div>
+            {{/if}}
+            <div class="row">
+              <div class="col-sm-4 col-md-4">
+                {{> post_date}}
+
+                {{#if post.image}}
+                <div class="thumbnail">
+                    <img src="{{ MEDIA_URL }}/{{post.image}}">           
+                </div>
+                {{/if}}
+              </div>
+
+              <div class="col-sm-8 col-md-8">
+                {{url "blog:post_detail" pk post.pk detail_url}}
+                <div>
+                    <h3><a href="{{detail_url}}">{{ post.title | title | truncatechars:40 }}</a></h3>
+                    {{ post.text | linebreaks | truncatewords:20 }}
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          {{#if forloop.last}}
+              {{include "blog/paginate.html"}}
+          {{/if}}
+      {{empty}}
+          <div class="alert alert-warning" role="alert">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              Search terms: {{search_query}}<br>
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+              Sorry, no matches found.
+          </div>
+      {{/each}}
+
+  </div>
+
+  {{> post_modules}}
+
+</div>
+
+{{endblock content}}

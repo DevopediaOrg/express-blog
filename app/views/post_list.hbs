@@ -1,0 +1,79 @@
+{{extends "blog/base.html"}}
+
+{{load staticfiles}}
+
+{{block title}}{{ block.super }}: Posts{{endblock}}
+
+{{block content}}
+    {{#if curr_topic}}
+        <h1 class="page-title">{{curr_topic}}</h1>
+    {{else if curr_tag}}
+        <h1 class="page-title">Tagged with <em>{{curr_tag}}</em></h1>
+    {{else if curr_state}}
+        <h1 class="page-title">{{curr_state}} Posts</h1>
+    {{else}}
+        <h1 class="page-title">Latest Posts</h1>
+    {{/if}}
+    
+    <div class="row">
+      <div class="col-sm-8 col-md-8">
+          {{#if curr_topic}}
+          <img class="topic-img" src="/images/topics/{{slugify curr_topic}}.jpg">
+          {{/if}}
+
+          {{#each post in posts}}
+              <div class="post">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4">
+                    {{> post_date}}
+
+                    {{#if post.image}}
+                    <div class="thumbnail">
+                        <img src="{{ MEDIA_URL }}/{{post.image}}">           
+                    </div>
+                    {{/if}}
+
+                    <div>
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{post.author.first_name}} {{post.author.last_name}}
+
+                    <br><span class="glyphicon glyphicon-paperclip"></span>
+                    {{post.topic}}
+
+                    {{#if post.featured}}
+                    <br><span class="glyphicon glyphicon-certificate"></span>
+                    Featured
+                    {{/if}}
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8 col-md-8">
+                    {{url "blog:post_detail" pk post.pk detail_url}}
+                    <div>
+                        <h3><a href="{{detail_url}}">{{ post.title | title | truncatechars:80 }}</a></h3>
+                        {{ post.text | linebreaks | truncatewords:80 }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              {{#if forloop.last}}
+                  {{include "blog/paginate.html"}}
+              {{/if}}
+          {{empty}}
+              <div class="alert alert-info" role="alert">
+                  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                  Sorry, no published blog posts.
+              </div>
+          {{/each}}
+      </div>
+
+      {{#if curr_state}}
+          {{> post_modules author_dashboard='show'}}
+      {{else}}
+          {{> post_modules}}
+      {{/if}}
+
+    </div>
+
+{{endblock content}}

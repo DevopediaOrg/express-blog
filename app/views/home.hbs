@@ -1,0 +1,107 @@
+{{#> layouts/base subtitle=": Home" }}
+<div class="row">
+  <div class="col-sm-8 col-md-8">
+      <h2 class="subtitle">Latest Posts</h2>
+      {{#each posts as |post idx|}}
+      <div class="col-sm-4 col-md-4">
+        <div class="home-thumbnail thumbnail">
+          {{url "blog:post_detail" pk post.pk  detail_url}}
+          <div class="img-wrapper">
+          {{#if post.image}}
+            <a href="{{detail_url}}">
+            <img src="{{ MEDIA_URL }}/{{post.image}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
+            </a>
+          {{/if}}
+          </div>
+          <div class="caption">
+            <span class="label label-info">
+                {{date post.published_date "d M Y"}} | 
+                {{post.author.first_name}} {{post.author.last_name}}
+            </span>
+            <h3>{{post.topic}}</h3>
+            <p class="home-thumb-title">
+                <a href="{{detail_url}}">
+                {{truncatewords post.title 20}}
+                </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">No published posts to show.</div>
+      {{/each}}
+
+      <h2 class="subtitle">Featured Posts</h2>
+      {{#each featured_posts as |post idx|}}
+      <div class="col-sm-4 col-md-4">
+        <div class="home-thumbnail thumbnail">
+          {{url "blog:post_detail" pk post.pk detail_url}}
+          <div class="img-wrapper">
+          {{#if post.image}}
+            <a href="{{detail_url}}">
+            <img src="{{ MEDIA_URL }}/{{post.image}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
+            </a>
+          {{/if}}
+          </div>
+          <div class="caption">
+            <span class="label label-info">
+                {{date post.published_date "d M Y"}} | 
+                {{post.author.first_name}} {{post.author.last_name}}
+            </span>
+            <h3>{{post.topic}}</h3>
+            <p class="home-thumb-title">
+                <a href="{{detail_url}}">
+                {{truncatewords post.title 20}}
+                </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {{else}}
+        <div class="alert alert-info" role="alert">No published posts to show.</div>
+      {{/each}}
+
+      <div id="firstWord" class="main-text">
+        <p>This is a blog web app built using Express, which itself is based on Node. The details of how to create this web app are explained step by step along with code at the <a href="https://github.com/DevopediaOrg/express-blog.git" target="_blank"><strong>express-blog</strong> Devopedia GitHub repository</a>. We would like a blogging site to have these features:
+          <ul>
+            <li>Display list of published articles from most recent to the oldest</li>
+            <li>Display list of authors</li>
+            <li>An author can login and add/edit/delete/publish own articles</li>
+            <li>Each article has a teaser image</li>
+            <li>Each article can belong to one or more topics</li>
+            <li>Visitors can clap for an article</li>
+            <li>Each topic will have an image and a description</li>
+            <li>Display published articles by author</li>
+            <li>Display published articles by topic</li>
+            <li>Each author has a profile page, including an avatar picture</li>
+            <li>Visitors can comment on an article</li>
+          </ul>
+        </p>          
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          <h2 class="subtitle">Posts By Topic</h2>
+          {{#if chart1}}
+            <piechartTopics id="chart1" src="{{chart1}}" />
+            <script src="/d3/piechart.js" type="text/javascript"></script>
+          {{else}}
+            <div class="alert alert-info" role="alert">No data to show.</div>
+          {{/if}}
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <h2 class="subtitle">Author Contributions</h2>
+          {{#if chart2}}
+            <barchartAuthors id="chart2" src="{{chart2}}" />
+            <script src="/d3/barchart.js" type="text/javascript"></script>
+          {{else}}
+            <div class="alert alert-info" role="alert">No data to show.</div>
+          {{/if}}
+        </div>
+      </div>
+  </div>
+
+  {{> post_modules}}
+</div>
+
+{{/layouts/base}}
