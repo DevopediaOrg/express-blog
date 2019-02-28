@@ -23,7 +23,22 @@ The rest of this document guides you through the project step by step. To try ou
 
 # 1. Hello World Express App (br0.1)
 
-Let's create a simple app with Express.js. We'll install `express` node module by typing `npm install express`.
+Let's create a simple app with Express.js. First we need to create a Node.js project. More specifically, we need to create the `package.json` file. Create this with the command `npm init` with the following inputs (just enter to accept default value):
+```
+package name: (express-blog)
+version: (1.0.0)
+description: Simple blogging app implemented in Express
+entry point: (.eslintrc.js) app.js
+test command:
+git repository: (https://github.com/DevopediaOrg/express-blog.git)
+keywords: blog express
+author: Devopedia
+license: (ISC) MIT
+```
+
+Let's run node with this command: `node app.js`. We'll get an error. This is because we have not installed Express yet.
+
+We can install Express by typing `npm install express --save`. The version of Express installed will be recorded in file `package.json`. Moreover, exact versions of Express and all its dependencies are recorded in file `package-lock.json`. Ideally, these two JSON files must be committed to project's code repository. We'll skip this step since we'll replace this sample app in the next exercise. You can delete these files if you wish.
 
 Study the code in `app.js`. The request and response objects of Express are built on top of those of Node. Start the Express app by running `node app.js`. Go to your browser and access URL `http://localhost:3000/`
 
