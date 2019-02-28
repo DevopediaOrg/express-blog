@@ -47,13 +47,11 @@ Congrats! You've just built your "Hello World" Express app!
 
 # 2. Generate App Structure (br0.2)
 
-**Express Generator** is an easy way to initialize an Express app since it provides the basic scaffolding. You can install it by running `npm install` since we've already recorded `express-generator` as a dev dependency. To learn more, visit the [Dependency Manager](https://devopedia.org/dependency-manager) article on Devopedia.
+In a real-world app, code will be organized in a modular way so that it's easy to maintain. While Express does not recommended any folder structure, **Express Generator** is an easy way to initialize an Express app. The generator provides the basic scaffolding. This generator provides the `express` command-line tool.
 
-**Do not** run this command since app has already been created for you in advance: `express --view=hbs app`. This command creates the basic code for building an Express app. Option `--view=hbs` tells the generator that we'll be using Handlebars templating. Module `hbs` describes itself as "Express view engine wrapper for Handlebars".
+For this exercise, we don't really need to install the generator since the folder structure is already created using the command `express --view=hbs app`. **Do not** run this command. This is only for your information. This command creates the basic code for building an Express app. Option `--view=hbs` tells the generator that we'll be using Handlebars templating. Module `hbs` describes itself as "Express view engine wrapper for Handlebars".
 
-We longer need Express Generator and other node modules at the top folder. We can therefore delete folder `node_modules/` and file `package_lock.json`.
-
-To install Express and other modules within the `app/` folder, and start the server, run these commands:
+Note that we have organized the app within the `app/` folder. To install Express and other modules within the `app/` folder, and start the server, run these commands:
 ```
 cd app
 npm install
@@ -70,7 +68,7 @@ Let's note the following points about this app:
 * When homepage is requested, the app routes it to `routes/index.js`. This route is setup in `app.js`. The corresponding view is served from `views/index.hbs`.
 * Verify that Express does hot reloading when views are changed but not when router code is changed.
 * Note that server responds with 404 error when `/favicon.ico` is requested.
-* Note that server responds to static files from the folder `public/`. This is setup in `app.js` with the line `app.use(express.static(path.join(__dirname, 'public')));`.
+* Note that server responds to static files from the folder `public/`. This is setup in `app.js` with the line `app.use(express.static(path.join(__dirname, 'public')));`. Try accessing the following and explain the results: `http://localhost:3000/public/stylesheets/style.css` and `http://localhost:3000/stylesheets/style.css`
 
 Try the following URLs and see if you can trace the code flow:
 * `http://localhost:3000/users`
