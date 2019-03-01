@@ -152,7 +152,62 @@ router.get('/',
   });
 ```
 
-## 3.7 Error Handling
 
-Error handling is an important aspect of Express. Let's try a few examples:
+# 4. Error Handling (br0.4)
+
+Error handling is an important aspect of Express. Express Generator has imported `http-errors` module to throw an error. Access an invalid URL path such as `/abcd` and understand how the error is handled.
+
+What happens if you delete the error handler given by the code `app.use(function (err, req, res, next) { ...`? In fact, Express will automatically an handle error that's not handled explicitly by our app code.
+
+Let's code our own implementation (add to `app.js`) without making use of `http-errors`:
+```
+app.use(function(req, res, next) {
+  throw Error('Unable to handle your request!');
+});
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send(err.message);
+});
+```
+
+Note that a error-handling middleware has four arguments. First argument contains the error. Also note that error status is fixed to 500. This is where `http-errors` module helps in throwing errors with suitable status codes.
+
+A more modular approach is to split the processing:
+```
+app.use(
+  function (err, req, res, next) {
+    console.error(err.stack);
+    next(err);
+  },
+  function (err, req, res, next) {
+    res.status(500).send(err.message);
+  }
+);
+```
+
+The above in ES6 syntax would be as follows:
+```
+const errLogger = (err, req, res, next) => { console.error(err.stack); next(err); };
+const errReplier = (err, req, res, next) => res.status(500).send(err.message);
+app.use(errLogger, errReplier);
+```
+
+Let's try to create a real error: read a file that doesn't exist. We'll use the `fs` built-in Node module. The code is given below:
+```
+const fs = require('fs');
+
+app.get('/readfile', function (req, res, next) {
+  fs.readFile('/somefile.txt', function (err, data) {
+    if (err) {
+      throw Error('Unable to read file!');
+    }
+    else {
+      res.send(data);
+    }
+  });
+});
+```
+
+Why is this not working? In fact, the Node server terminates. Even if we add our own custom error-handling middleware it won't work. The reason is error is thrown from inside a callback to an asynchronous function. This error bubbles all the way up to the event loop. Let's correct the code by replacing `throw ...` with `next(err)`. This is the correct way to pass errors in Express.
 
