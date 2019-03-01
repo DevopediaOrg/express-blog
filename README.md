@@ -77,3 +77,80 @@ Try the following URLs and see if you can trace the code flow:
 Note the frequent use of `app.use()` in the code. Study the documentation of [app.use()](https://expressjs.com/en/4x/api.html#app.use). This is used to add middleware functions in the data flow path. In fact, it's been said, "An Express application is essentially a series of middleware function calls".
 
 Middleware functions have access to request and response objects. It the request-response cycle is not terminated within a middleware function, it must call `next()` so that the next middleware function is called. You can see an example of this in file `app.js`. To know more, read [Using Middleware](http://expressjs.com/en/guide/using-middleware.html).
+
+
+# 3. Experiments with Middleware (br0.3)
+
+Let's do a few experiments to understand the call flow of Express middleware.
+
+## 3.1 Basics
+
+Start the node server as before. You will see that we have slightly modified the `app.js` file. Access the following URLs and explain the logging that happens:
+* `http://localhost:3000/`
+* `http://localhost:3000/users`
+* `http://localhost:3000/abcd`
+
+What happens when you remove `next()` call from `Middleware A` in our example? You can also see what's happening on the console log.
+
+How is `Middleware A` different from `timeLogger()` inside `routes/users.js`? The former is an app-level middleware. The latter is specific to the users router instance. It's a router-level middleware. In fact, both `routes/index.js` and `routes/users.js` implement what we call "modular, mountable route handlers".
+
+## 3.2 Custom Middleware
+
+We've added a custom middleware called `hello-url` stored in folder `middleware`. This example shows how middleware can be configured. Let's invoke this in `app.js` with the following code:
+```
+var hurl = require('./middleware/hello-url');
+app.use(hurl({ upper: true }));
+```
+
+## 3.3 Chaining Middleware
+
+We can chain middleware calls. Replace `app.use('/users', usersRouter);` with the following code:
+```
+const middlewareC = (req, res, next) => { console.log(req.url, 'Middleware C'); next(); };
+const middlewareD = (req, res, next) => { console.log(req.url, 'Middleware D'); next(); };
+app.use('/users', [middlewareC, middlewareD], usersRouter);
+```
+
+Access the URL `http://localhost:3000/users`. Can you explain the call flow? Why is `req.url` different when logged from middleware C and D?
+
+## 3.4 Parsing Route Paths
+
+Change the code above to the following:
+```
+const middlewareD = (req, res, next) => { console.log(req.params, 'Middleware D'); next(); };
+app.use('/users/?(:id)?', [middlewareC, middlewareD], usersRouter);
+```
+
+Access URL paths `/users`, `/users/`, `/users/123`. The routing for these are defined using a string with metacharacter `?`. Metacharacters that we can use are `?`, `+`, `*`, and `()`. These have similar meaning as in regular expressions. For more details read the [Express routing guide](https://expressjs.com/en/guide/routing.html).
+
+## 3.5 app.use() vs app.get()
+
+Try the following code (before calling `indexRouter`) and see if you can explain the difference between `app.use()` and `app.get()`:
+```
+const middlewareC = (req, res, next) => { console.log(req.url, 'Middleware C'); next('route'); };
+const middlewareD = (req, res, next) => { console.log(req.url, 'Middleware D'); next(); };
+app.use('/', [middlewareC, middlewareD]);
+app.get('/', [middlewareC, middlewareD]);
+```
+
+Basically, `app.use()` is to set up middleware calls whereas `app.get()` is to set up route handlers. We can see in the above example, the use of `next('route')`. When this is part of a route handler, it tells express to skip handlers that follow.
+
+## 3.6 Multiple Handlers
+
+We know from the above examples that multiple middleware can be chained together. Likewise, we can have multiple handlers for the same route. As an example, modify the code in `routes/users.js` as follows:
+```
+router.get('/', 
+  function (req, res, next) {
+    console.log('First handler');
+    next();
+  },
+  function (req, res, next) {
+    console.log('Second handler');
+    res.send('List all users');
+  });
+```
+
+## 3.7 Error Handling
+
+Error handling is an important aspect of Express. Let's try a few examples:
+
