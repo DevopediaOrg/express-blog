@@ -94,6 +94,8 @@ What happens when you remove `next()` call from `Middleware A` in our example? Y
 
 How is `Middleware A` different from `timeLogger()` inside `routes/users.js`? The former is an app-level middleware. The latter is specific to the users router instance. It's a router-level middleware. In fact, both `routes/index.js` and `routes/users.js` implement what we call "modular, mountable route handlers".
 
+What's interesting is that the two routers are added to `app.use()`. This means that Express router instances are also used as middleware. In fact, we can also have another Express application and use that as a middleware within our main app! This is documented in the [API of app.use()](https://expressjs.com/en/api.html#app.use).
+
 ## 3.2 Custom Middleware
 
 We've added a custom middleware called `hello-url` stored in folder `middleware`. This example shows how middleware can be configured. Let's invoke this in `app.js` with the following code:
