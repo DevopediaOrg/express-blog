@@ -31,7 +31,10 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/expressBlog');
+mongoose.connect('mongodb://localhost/expressBlog', { 
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true});
 var db = mongoose.connection;
 
 //handle mongo error
@@ -49,6 +52,12 @@ app.use(session({
     mongooseConnection: db
   })
 }));
+
+var hurl = require('./middleware/hello-url');
+app.use(hurl({ upper: false }));
+
+app.use('/', (req, res, next) => { console.log(req.url, 'Middleware A'); next(); });
+app.use('/', (req, res, next) => { console.log(req.url, 'Middleware B'); next(); });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
