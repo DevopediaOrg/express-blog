@@ -1,27 +1,26 @@
-{{#> layouts/base subtitle=": Home" }}
+{{#> layouts/base subtitle=": Home"}}
 <div class="row">
   <div class="col-sm-8 col-md-8">
       <h2 class="subtitle">Latest Posts</h2>
       {{#each posts as |post idx|}}
       <div class="col-sm-4 col-md-4">
         <div class="home-thumbnail thumbnail">
-          {{url "blog:post_detail" pk post.pk  detail_url}}
           <div class="img-wrapper">
-          {{#if post.image}}
-            <a href="{{detail_url}}">
-            <img src="{{ MEDIA_URL }}/{{post.image}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
+          {{#if post.teaserImgPath}}
+            <a href="articles/{{post._id}}">
+            <img src="media/{{post.teaserImgPath}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
             </a>
           {{/if}}
           </div>
           <div class="caption">
             <span class="label label-info">
-                {{date post.published_date "d M Y"}} | 
-                {{post.author.first_name}} {{post.author.last_name}}
+                {{date post.publishedAt "DD MMM YYYY"}} | 
+                {{post.authorId.firstname}} {{post.authorId.lastname}}
             </span>
-            <h3>{{post.topic}}</h3>
+            <h3>{{post.topicId.title}}</h3>
             <p class="home-thumb-title">
-                <a href="{{detail_url}}">
-                {{truncatewords post.title 20}}
+                <a href="articles/{{post._id}}">
+                {{truncate post.title 120}}
                 </a>
             </p>
           </div>
@@ -35,23 +34,22 @@
       {{#each featured_posts as |post idx|}}
       <div class="col-sm-4 col-md-4">
         <div class="home-thumbnail thumbnail">
-          {{url "blog:post_detail" pk post.pk detail_url}}
           <div class="img-wrapper">
-          {{#if post.image}}
-            <a href="{{detail_url}}">
-            <img src="{{ MEDIA_URL }}/{{post.image}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
+          {{#if post.teaserImgPath}}
+            <a href="articles/{{post._id}}">
+            <img src="media/{{post.teaserImgPath}}" data-holder-rendered="true" style="max-width:100%; max-height:100px; display:block;">
             </a>
           {{/if}}
           </div>
           <div class="caption">
             <span class="label label-info">
-                {{date post.published_date "d M Y"}} | 
-                {{post.author.first_name}} {{post.author.last_name}}
+                {{date post.publishedAt "DD MMM YYYY"}} | 
+                {{post.authorId.firstname}} {{post.authorId.lastname}}
             </span>
-            <h3>{{post.topic}}</h3>
+            <h3>{{post.topicId.title}}</h3>
             <p class="home-thumb-title">
-                <a href="{{detail_url}}">
-                {{truncatewords post.title 20}}
+                <a href="articles/{{post._id}}">
+                {{truncate post.title 120}}
                 </a>
             </p>
           </div>

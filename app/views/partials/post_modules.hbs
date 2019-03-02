@@ -8,7 +8,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-6 col-md-6 author-dashboard-img">
-            <img src="{{ MEDIA_URL }}/{{user.author.photo}}">
+            <img src="media/{{user.author.photo}}">
         </div>
         <div class="col-sm-6 col-md-6 author-dashboard-text">
             <span class="label label-success">{{user.first_name}} {{user.last_name}}</span><br><br>
@@ -39,9 +39,9 @@
       <ul>
           {{#each topics as |topic idx|}}
               {{#if (test "topic == curr_topic")}}
-              <li>{{topic}} ({{num_posts}})</li>
+              <li>{{topic.title}} ({{topic.num_posts}})</li>
               {{else}}
-              <li><a href="{{urlslugify "blog:topic_list" topic}}">{{topic}} ({{num_posts}})</a></li>
+              <li><a href="{{urlslugify "blog:topic_list" topic}}">{{topic.title}} ({{topic.num_posts}})</a></li>
               {{/if}}
           {{/each}}
       </ul>

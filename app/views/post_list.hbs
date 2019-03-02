@@ -27,15 +27,15 @@
                   <div class="col-sm-4 col-md-4">
                     {{> post_date}}
 
-                    {{#if post.image}}
+                    {{#if post.teaserImgPath}}
                     <div class="thumbnail">
-                        <img src="{{ MEDIA_URL }}/{{post.image}}">           
+                        <img src="media/{{post.teaserImgPath}}">           
                     </div>
                     {{/if}}
 
                     <div>
                     <span class="glyphicon glyphicon-user"></span>
-                    {{post.author.first_name}} {{post.author.last_name}}
+                    {{post.firstname}} {{post.lastname}}
 
                     <br><span class="glyphicon glyphicon-paperclip"></span>
                     {{post.topic}}
@@ -50,8 +50,8 @@
                   <div class="col-sm-8 col-md-8">
                     {{url "blog:post_detail" pk post.pk detail_url}}
                     <div>
-                        <h3><a href="{{detail_url}}">{{ post.title | title | truncatechars:80 }}</a></h3>
-                        {{ post.text | linebreaks | truncatewords:80 }}
+                        <h3><a href="{{detail_url}}">{{ post.title | title | truncate 480 }}</a></h3>
+                        {{ post.text | linebreaks | truncate 480 }}
                     </div>
                   </div>
                 </div>

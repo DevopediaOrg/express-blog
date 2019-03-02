@@ -5,10 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Terminal (integrated)",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\app\\bin\\www"
+            "name": "Main App",
+            "cwd": "${workspaceFolder}/app",
+            "program": "${workspaceFolder}/app/bin/www"
         }
     ]
 }

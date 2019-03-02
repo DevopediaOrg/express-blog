@@ -22,8 +22,8 @@
                         {{ post.text | wordcount }} words
                     </div>
                     <div class="col-sm-3 col-md-3">
-                        <img style="max-height:19px" src="{{ MEDIA_URL }}/{{post.author.author.photo}}"><br>
-                        {{ post.author.first_name }} {{ post.author.last_name }}
+                        <img style="max-height:19px" src="media/{{post.author.author.photo}}"><br>
+                        {{ post.firstname }} {{ post.lastname }}
                     </div>
                     <div class="col-sm-3 col-md-3">
                         {{#if (test "user.is_authenticated and user.id == post.author.id")}}
@@ -44,9 +44,9 @@
                 </div>
             </div>
 
-            {{#if post.image}}
+            {{#if post.teaserImgPath}}
             <div class="main-img">
-                <img src="{{ MEDIA_URL }}/{{post.image}}">           
+                <img src="media/{{post.teaserImgPath}}">           
             </div>
             {{/if}}
             

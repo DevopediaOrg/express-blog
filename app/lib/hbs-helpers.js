@@ -1,7 +1,9 @@
+const moment = require('moment');
+
 module.exports = {
 
-  date: function(str) {
-    return str;
+  date: function(str, fmt) {
+    return moment(str).format(fmt);
   },
   
   now: function(format) {
@@ -18,6 +20,12 @@ module.exports = {
 
   url: function(str) {
     return '';
+  },
+
+  title: function(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
   },
 
   lower: function(str) {
@@ -53,10 +61,9 @@ module.exports = {
     return str;
   },
 
-  truncatewords: function(str) {
-    return str;
-    if (str) return str.toLowerCase();
-    return '';
+  truncate: function(str, maxlen) {
+    if (str.length > maxlen) return str.substring(0, maxlen-3) + '...';
+    else return str;
   }
   
 };

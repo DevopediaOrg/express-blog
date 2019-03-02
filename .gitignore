@@ -1,3 +1,7 @@
+# App files
+app/public/tmp
+tests/node_modules
+
 # Logs
 logs
 *.log

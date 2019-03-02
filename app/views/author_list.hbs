@@ -13,10 +13,10 @@
               <div class="post">
                 <div class="row">
                   <div class="col-sm-4 col-md-4">
-                    <span class="author-name">{{author.user.first_name}} {{author.user.last_name}}</span>
+                    <span class="author-name">{{author.firstname}} {{author.user.last_name}}</span>
                     {{#if author.photo}}
                     <div class="thumbnail">
-                        <img src="{{ MEDIA_URL }}/{{author.photo}}">           
+                        <img src="media/{{author.photo}}">           
                     </div>
                     {{/if}}
                   </div>

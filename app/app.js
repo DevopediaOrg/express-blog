@@ -53,12 +53,6 @@ app.use(session({
   })
 }));
 
-var hurl = require('./middleware/hello-url');
-app.use(hurl({ upper: false }));
-
-app.use('/', (req, res, next) => { console.log(req.url, 'Middleware A'); next(); });
-app.use('/', (req, res, next) => { console.log(req.url, 'Middleware B'); next(); });
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);

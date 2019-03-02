@@ -10,8 +10,7 @@ d3.json(datafile, function(data) {
           .labelThreshold(.05)
           .labelType("value") // "key", "value" or "percent"
           .donut(true)
-          .donutRatio(0.35)
-          ;
+          .donutRatio(0.35);
 
       chart.pie.valueFormat(d3.format(',.0d'));
     

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"expressBlog.users"},{"v":2,"unique":true,"key":{"email":1},"name":"email_1","ns":"expressBlog.users","background":true},{"v":2,"unique":true,"key":{"username":1},"name":"username_1","ns":"expressBlog.users","background":true}],"uuid":"7ebd9582827d47de9708ae7430377358"}

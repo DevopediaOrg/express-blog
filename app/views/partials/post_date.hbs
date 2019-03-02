@@ -1,9 +1,9 @@
-{{#if post.published_date}}
+{{#if post.}}
 <div class="date date-{{post.state}} cut-off cut-off-{{post.state}}">
   <p>
-    <span class="day">{{ post.published_date | date:"d" }}</span>
-    <span class="month">{{ post.published_date | date:"M" }}</span>
-    <span class="year">{{ post.published_date | date:"Y" }}</span> 
+    <span class="day">{{ post. | date:"d" }}</span>
+    <span class="month">{{ post. | date:"M" }}</span>
+    <span class="year">{{ post. | date:"Y" }}</span> 
   </p>
 </div>
 {{else}}

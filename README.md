@@ -245,8 +245,13 @@ user.find({}, function (err, docs) {
 });
 ```
 
+Try sending the response as `res.json(docs)`. Can you explain why the browser (Firefox) displays the response differently? If browser does caching, you will not see any change. You can disable caching by customizing the response header:
+`res.append('Cache-Control', 'private, no-cache, no-store, must-revalidate');`
+
 
 # 6. Design the Blog (br0.6)
+
+## 6.1 Requirements
 
 It's time to build our blog app. We want the following features:
 * Display list of published articles from most recent to the oldest
@@ -260,6 +265,8 @@ It's time to build our blog app. We want the following features:
 * Display published articles by topic
 * Each author has a profile page, including an avatar picture
 * Visitors can comment on an article
+
+## 6.2 Models, Routes & Views
 
 In addition to our User model, our app will require the following models: Article, Topic. These are available in `models/` folder. Module `mongoose-timestamp` will automatically add `createdAt` and `updatedAt` fields to a schema. Why is that we use this for Topic but not for Article?
 
@@ -275,7 +282,44 @@ Our app will require the following views and associated routes:
     * articles: implemented as part of article listing
 * 404: to handle missing pages
 
-`express-handlebars`
-We've implemented some of these. Try navigating through the app. 
-Try sending the response as `res.json(docs)`. Can you explain why the browser (Firefox) displays the response differently? If browser does caching, you will not see any change. You can disable caching by customizing the response header:
-`res.append('Cache-Control', 'private, no-cache, no-store, must-revalidate');`
+We've implemented some of these. We use `express-handlebars` module since it's better than `hbs` we used earlier. Don't forget to update your installation from within `app` folder: `npm install`
+
+Try navigating through the app. You will notice that the views don't have any data. Users can't login because we haven't implemented this either.
+
+## 6.3 Test Data
+
+One approach to build an app is to first build and test all read-only functionality. The idea is to test the frontend views based on test data. To do this, we need to first generate test data and import that into our DB. We have created a script in Python `tests/generateTestData.py`. Run this script. Check that your DB is now populated with test data.
+
+_Tip: If you're interested in learning Node better, implement the about Python script in Node._ In case you don't have Python, you can use the exported database in folder `tests/expressBlog` and import it as given below (run in folder `tests`):
+* Export: `mongodump -d expressBlog -o .`
+* Import: `mongorestore -d expressBlog expressBlog`
+
+Let's learn to inspect the DB using the Mongo Shell. Start the shell with command `mongo` and run the following commands:
+```
+# List available databases
+show dbs
+
+# Select a specific database
+use expressBlog
+
+# List available collections
+show collections
+
+# Count the number of articles
+db.articles.find().count()
+
+# Count published articles
+db.articles.find({state: {$eq: 'published'}}).count()
+
+# Show the title of 3 most recently published articles, in pretty format
+# This example also show how to enter multiline commands
+db.articles.
+  find(
+    {state: {$eq: 'published'}},
+    {_id:0, title:1, publishedAt:1}).
+  sort({publishedAt: -1}).
+  limit(3).
+  pretty()
+```
+
+For more information, read the [Mongo Shell Quick Reference](https://docs.mongodb.com/manual/reference/mongo-shell/).
